@@ -1,4 +1,7 @@
-﻿using System;
+﻿// <copyright file="ConsoleTraceService.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using System.Diagnostics.CodeAnalysis;
 using Yuniql.Extensibility;
 
@@ -11,7 +14,7 @@ namespace Altinn.AccessGroups
     public class ConsoleTraceService : ITraceService
     {
         /// <summary>
-        /// Debug enabled 
+        /// Gets or sets a value indicating whether Debug is enabled or disabled.
         /// </summary>
         public bool IsDebugEnabled { get; set; } = false;
 
@@ -23,12 +26,18 @@ namespace Altinn.AccessGroups
 
         /// <inheritdoc/>>
         public bool IsTraceToFile { get; set; } = false;
+
+        /// <inheritdoc/>>
         bool ITraceService.IsTraceToDirectory { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        /// <inheritdoc/>>
         string ITraceService.TraceDirectory { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         /// <summary>
-        /// Info
-        /// </summary>      
+        /// Logging info.
+        /// <param name="message">The message to be logged.</paramref>
+        /// <param name="payload">The payload.</paramref>
+        /// </summary>
         public void Info(string message, object payload = null)
         {
             var traceMessage = $"INF   {DateTime.UtcNow.ToString("o")}   {message}{Environment.NewLine}";
@@ -36,7 +45,9 @@ namespace Altinn.AccessGroups
         }
 
         /// <summary>
-        /// Error
+        /// Logging error.
+        /// <param name="message">The message to log.</param>
+        /// <param name="payload">The payload.</param>
         /// </summary>
         public void Error(string message, object payload = null)
         {
@@ -45,11 +56,13 @@ namespace Altinn.AccessGroups
         }
 
         /// <summary>
-        /// Debug
+        /// Debug.
+        /// <param name="message">The message to log.</param>
+        /// <param name="payload">The payload.</param>
         /// </summary>
         public void Debug(string message, object payload = null)
         {
-            if (IsDebugEnabled)
+            if (this.IsDebugEnabled)
             {
                 var traceMessage = $"DBG   {DateTime.UtcNow.ToString("o")}   {message}{Environment.NewLine}";
                 Console.Write(traceMessage);
@@ -57,7 +70,9 @@ namespace Altinn.AccessGroups
         }
 
         /// <summary>
-        /// Success
+        /// Success.
+        /// <param name="message">The message to log.</param>
+        /// <param name="payload">The payload.</param>
         /// </summary>
         public void Success(string message, object payload = null)
         {
@@ -66,7 +81,9 @@ namespace Altinn.AccessGroups
         }
 
         /// <summary>
-        /// Warn
+        /// Warning.
+        /// <param name="message">The message to log.</param>
+        /// <param name="payload">The payload.</param>
         /// </summary>
         public void Warn(string message, object payload = null)
         {
