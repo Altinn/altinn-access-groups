@@ -1,15 +1,18 @@
+// <copyright file="Program.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Altinn.AccessGroups;
 using Altinn.AccessGroups.Core;
+using Altinn.AccessGroups.Integrations;
 using Altinn.AccessGroups.Interfaces;
 using Altinn.AccessGroups.Persistance;
 using Altinn.AccessGroups.Services;
-using Microsoft.Extensions.Logging;
 using Npgsql.Logging;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Yuniql.AspNetCore;
 using Yuniql.PostgreSql;
-using Altinn.AccessGroups.Integrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,7 +45,7 @@ async Task SetConfigurationProviders(ConfigurationManager config)
 {
     string basePath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
 
-    //logger.LogInformation($"Program // Loading Configuration from basePath={basePath}");
+    // logger.LogInformation($"Program // Loading Configuration from basePath={basePath}");
 
     config.SetBasePath(basePath);
     string configJsonFile1 = $"{basePath}/altinn-appsettings/altinn-dbsettings-secret.json";
@@ -82,7 +85,7 @@ void ConfigureServices(IServiceCollection services, IConfiguration config)
     services.AddSingleton<IAccessGroup, AccessGroupService>();
     services.AddHttpClient<SBLBridgeClient>();
     services.AddSingleton<IAltinnRolesClient, AltinnRolesClient>();
-    services.AddSingleton<IMemberships, MembershipService>();    
+    services.AddSingleton<IMemberships, MembershipService>();
 }
 
 void ConfigurePostgreSql()
@@ -106,7 +109,7 @@ void ConfigurePostgreSql()
                 Workspace = Path.Combine(Environment.CurrentDirectory, builder.Configuration.GetValue<string>("PostgreSQLSettings:WorkspacePath")),
                 ConnectionString = connectionString,
                 IsAutoCreateDatabase = false,
-                IsDebug = true
+                IsDebug = true,
             });
     }
 }

@@ -1,4 +1,8 @@
-﻿namespace Altinn.AccessGroups.Persistance
+﻿// <copyright file="PostgreSQLSettings.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace Altinn.AccessGroups.Persistance
 {
     /// <summary>
     /// Represents settings needed to communicate with the PostgreSQL database server.
@@ -6,12 +10,12 @@
     public class PostgreSQLSettings
     {
         /// <summary>
-        /// Connection string to the PostgresSQL database server.
+        /// Gets or sets the connection string to the PostgresSQL database server.
         /// </summary>
         public string ConnectionString { get; set; } = string.Empty;
 
         /// <summary>
-        /// Password for app user for the postgres db
+        /// Gets or sets the password for app user for the postgres db.
         /// </summary>
         public string AuthorizationDbPwd { get; set; } = string.Empty;
     }

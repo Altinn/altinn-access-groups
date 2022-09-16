@@ -1,40 +1,44 @@
-﻿using System.Text.Json.Serialization;
+﻿// <copyright file="AccessGroup.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using System.Text.Json.Serialization;
 
 namespace Altinn.AccessGroups.Core.Models
 {
     /// <summary>
-    /// Model used for Access Groups in Authorization
+    /// Model used for Access Groups in Authorization.
     /// </summary>
     public class AccessGroup
     {
         /// <summary>
-        /// The Access Group Code
+        /// Gets or sets the Access Group Code.
         /// </summary>
-        public string AccessGroupCode { get; set; }
+        public string? AccessGroupCode { get; set; }
 
         /// <summary>
-        /// The Access Group Type
+        /// Gets or sets the Access Group Type.
         /// </summary>
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public AccessGroupType AccessGroupType { get; set; }
 
         /// <summary>
-        /// The list of categories the Access Group is to have as parents
+        /// Gets or sets the list of categories the Access Group is to have as parents.
         /// </summary>
-        public List<string> Categories { get; set; }
+        public List<string>? Categories { get; set; }
 
         /// <summary>
-        /// Whether the Access Group is hiden
+        /// Gets or sets a value indicating whether the Access Group is hidden.
         /// </summary>
         public bool Hidden { get; set; }
 
         /// <summary>
-        /// When the Access Group was created
+        /// Gets or sets when the Access Group was created.
         /// </summary>
         public DateTime Created { get; set; }
 
         /// <summary>
-        /// When the Access Group was last modified
+        /// Gets or sets when the Access Group was last modified.
         /// </summary>
         public DateTime Modified { get; set; }
     }

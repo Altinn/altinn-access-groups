@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="DataReaderExtensions.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using System;
 using System.Data;
 
 namespace Altinn.AccessGroups.Persistance.Extensions
@@ -9,8 +13,8 @@ namespace Altinn.AccessGroups.Persistance.Extensions
     public static class DataReaderExtensions
     {
         /// <summary>
-        /// Gets a value from the current record of the given data reader, or the default value 
-        /// for the given type <typeparamref name="T"/> if the reader value is <see cref="DBNull.Value"/>.
+        /// Gets a value from the current record of the given data reader, or the default value
+        /// /// for the given type <typeparamref name="T"/> if the reader value is <see cref="DBNull.Value"/>.
         /// </summary>
         /// <typeparam name="T">Type of value to retrieve.</typeparam>
         /// <param name="reader">Data reader positioned at a row.</param>
@@ -22,7 +26,7 @@ namespace Altinn.AccessGroups.Persistance.Extensions
         }
 
         /// <summary>
-        /// Gets a value from the current record of the given data reader, or the given default value 
+        /// Gets a value from the current record of the given data reader, or the given default value
         /// if the reader value is <see cref="DBNull.Value"/>.
         /// </summary>
         /// <typeparam name="T">Type of value to retrieve.</typeparam>
