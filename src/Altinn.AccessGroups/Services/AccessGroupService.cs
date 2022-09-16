@@ -54,9 +54,9 @@ namespace Altinn.AccessGroups.Services
             return await _accessGroupRepository.GetExternalRelationships();
         }
 
-        public Task<bool> UpdateGroup(AccessGroup accessGroup)
+        public async Task<AccessGroup> UpdateGroup(AccessGroup accessGroup)
         {
-            throw new NotImplementedException();
+            return await _accessGroupRepository.UpdateAccessGroup(accessGroup);
         }
 
         public async Task<List<AccessGroup>> ImportAccessGroups(List<AccessGroup> accessGroups)

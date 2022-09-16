@@ -12,6 +12,13 @@ namespace Altinn.AccessGroups.Core
         Task<AccessGroup> InsertAccessGroup(AccessGroup accessGroup);
 
         /// <summary>
+        /// Operation for update an Access Group to the postgreSQL database
+        /// </summary>
+        /// <param name="accessGroup">The Access Group model to update</param>
+        /// <returns>The resulting Access Group</returns>
+        Task<AccessGroup> UpdateAccessGroup(AccessGroup accessGroup);
+
+        /// <summary>
         /// Operation for getting all access groups from the postgreSQL database
         /// </summary>
         /// <returns>The list of access groups</returns>

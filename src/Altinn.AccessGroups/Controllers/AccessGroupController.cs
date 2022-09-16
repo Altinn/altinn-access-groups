@@ -44,7 +44,7 @@ namespace Altinn.AccessGroups.Controllers
                 return BadRequest(ModelState);
             }
 
-            bool result = await _accessGroup.UpdateGroup(accessGroup);
+            AccessGroup result = await _accessGroup.UpdateGroup(accessGroup);
 
             return Ok(result);
         }
@@ -112,7 +112,6 @@ namespace Altinn.AccessGroups.Controllers
         [Route("authorization/api/v1/[controller]/")]
         public string Get()
         {
-            
             return "Hello world!";
         }
     }

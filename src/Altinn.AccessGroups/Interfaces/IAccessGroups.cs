@@ -6,7 +6,7 @@ namespace Altinn.AccessGroups.Interfaces
     {
         Task<AccessGroup> CreateGroup(AccessGroup accessGroup);
 
-        Task<bool> UpdateGroup(AccessGroup accessGroup);
+        Task<AccessGroup> UpdateGroup(AccessGroup accessGroup);
 
         Task<List<AccessGroup>> GetAccessGroups();
 
