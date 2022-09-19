@@ -8,6 +8,7 @@ using Altinn.AccessGroups.Persistance.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Npgsql;
+using System.Data;
 
 namespace Altinn.AccessGroups.Persistance
 {
@@ -23,7 +24,8 @@ namespace Altinn.AccessGroups.Persistance
         private readonly string getCategories = "SELECT categorycode, categorytype FROM accessgroup.category";
 
         private readonly string insertAccessGroupFunc = "select * from accessgroup.insert_accessgroup(@_accessGroupCode, @_accessGroupType, @_hidden, @_categoryCodes)";
-        private readonly string getAccessGroups = "SELECT accessgroupcode, accessgrouptype, hidden, created, modified FROM accessgroup.accessgroup";
+        private readonly string updateAccessGroupFunc = "select * from accessgroup.update_accessgroup(@_accessGroupCode, @_accessGroupType, @_hidden, @_categoryCodes)";
+        private readonly string getAccessGroups = "SELECT accessgroup.accessgroup.accessgroupcode, accessgrouptype, hidden, created, modified, array_agg(categorycode) categorycodes FROM accessgroup.accessgroup JOIN accessgroup.accessgroupcategory ON accessgroup.accessgroup.accessgroupcode = accessgroup.accessgroupcategory.accessgroupcode GROUP BY accessgroup.accessgroup.accessgroupcode";
 
         private readonly string insertExternalRelationshipFunc = "select * from accessgroup.insert_externalrelationship(@_ExternalSource, @_ExternalId, @_AccessGroupCode, @_UnitTypeFilter)";
         private readonly string getExternalRelationships = "SELECT externalsource, externalid, accessgroupcode, unittypefilter FROM accessgroup.externalrelationship";
@@ -100,6 +102,35 @@ namespace Altinn.AccessGroups.Persistance
             catch (Exception e)
             {
                 this.logger.LogError(e, "AccessGroups // AccessGroupsRepository // InsertAccessGroup // Exception");
+                throw;
+            }
+        }
+
+        /// <inheritdoc/>
+        public async Task<AccessGroup> UpdateAccessGroup(AccessGroup accessGroup)
+        {
+            try
+            {
+                await using NpgsqlConnection conn = new NpgsqlConnection(connectionString);
+                await conn.OpenAsync();
+
+                NpgsqlCommand pgcom = new NpgsqlCommand(updateAccessGroupFunc, conn);
+                pgcom.Parameters.AddWithValue("_accessGroupCode", accessGroup.AccessGroupCode);
+                pgcom.Parameters.AddWithValue("_accessGroupType", accessGroup.AccessGroupType);
+                pgcom.Parameters.AddWithValue("_hidden", accessGroup.Hidden);
+                pgcom.Parameters.AddWithValue("_categoryCodes", accessGroup.Categories);
+
+                using NpgsqlDataReader reader = await pgcom.ExecuteReaderAsync();
+                if (reader.Read())
+                {
+                    return GetAccessGroup(reader);
+                }
+
+                return null;
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e, "AccessGroups // AccessGroupsRepository // InsertAccessGroup // Exception");
                 throw;
             }
         }
@@ -416,6 +447,8 @@ namespace Altinn.AccessGroups.Persistance
 
         private static AccessGroup GetAccessGroup(NpgsqlDataReader reader)
         {
+            string[] categories = (string[])reader.GetValue("CategoryCodes");
+
             return new AccessGroup
             {
                 AccessGroupCode = reader.GetValue<string>("AccessGroupCode"),
@@ -423,6 +456,7 @@ namespace Altinn.AccessGroups.Persistance
                 Hidden = reader.GetValue<bool>("Hidden"),
                 Created = reader.GetValue<DateTime>("Created"),
                 Modified = reader.GetValue<DateTime>("Modified"),
+                Categories = categories.ToList(),
             };
         }
 

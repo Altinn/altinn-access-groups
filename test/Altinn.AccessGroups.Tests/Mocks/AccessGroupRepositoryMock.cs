@@ -54,5 +54,10 @@ namespace Altinn.AccessGroups.Test.Mocks
         {
             throw new NotImplementedException();
         }
+
+        public Task<AccessGroup> UpdateAccessGroup(AccessGroup accessGroup)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

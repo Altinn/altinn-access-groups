@@ -130,6 +130,21 @@ EXCEPTION
     WHEN duplicate_object THEN null;
 END $$;
 
+-- Type: accessgroupwithcategory
+DO $$ BEGIN
+	CREATE TYPE accessgroup.accessgroupwithcategory AS
+	(
+		accessgroupcode text,
+		accessgrouptype accessgroup.accessgrouptype,
+		hidden boolean,
+		created timestamp with time zone,
+		modified timestamp with time zone,
+		categorycodes text[]
+	);
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;
+
 -- Table: accessgroup.TextResources
 CREATE TABLE IF NOT EXISTS accessgroup.TextResource
 (

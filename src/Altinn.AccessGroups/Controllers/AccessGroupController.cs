@@ -56,7 +56,7 @@ namespace Altinn.AccessGroups.Controllers
                 return this.BadRequest(this.ModelState);
             }
 
-            bool result = await this.accessGroup.UpdateGroup(accessGroup);
+            AccessGroup result = await this.accessGroup.UpdateGroup(accessGroup);
 
             return this.Ok(result);
         }

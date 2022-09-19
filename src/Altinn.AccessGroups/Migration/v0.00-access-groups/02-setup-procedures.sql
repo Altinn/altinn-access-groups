@@ -52,17 +52,18 @@ $BODY$;
 
 -- FUNCTION: accessgroup.insert_accessgroup
 CREATE OR REPLACE FUNCTION accessgroup.insert_accessgroup(
-  _accessGroupCode text,
-  _accessGroupType accessgroup.AccessGroupType,
-  _hidden bool,
-  _categoryCodes text[]
-)
-RETURNS SETOF accessgroup.accessgroup
-LANGUAGE 'plpgsql'
-VOLATILE
-ROWS 1
+	_accessgroupcode text,
+	_accessgrouptype accessgroup.accessgrouptype,
+	_hidden boolean,
+	_categorycodes text[])
+    RETURNS SETOF accessgroup.accessgroupwithcategory
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1
+
 AS $BODY$
-    BEGIN
+BEGIN
       INSERT INTO accessgroup.AccessGroup(
         AccessGroupCode,
         AccessGroupType, 
@@ -83,9 +84,45 @@ AS $BODY$
         CategoryCode
       )
       SELECT _accessGroupCode, * FROM UNNEST($4);
-
-      RETURN QUERY(SELECT * FROM accessgroup.AccessGroup WHERE AccessGroupCode = _accessGroupCode);
+	  	  
+      RETURN QUERY(SELECT accessgroup.AccessGroup.accessgroupcode, accessgrouptype, hidden, created, modified, array_agg(accessgroup.accessgroupcategory.categorycode) categorycodes FROM accessgroup.AccessGroup JOIN accessgroup.accessgroupcategory ON accessgroup.accessgroup.accessgroupcode = accessgroup.accessgroupcategory.accessgroupcode WHERE accessgroup.accessgroup.accessgroupcode = _accessGroupCode GROUP BY accessgroup.accessgroup.accessgroupcode);
     END
+$BODY$;
+
+-- FUNCTION: accessgroup.update_accessgroup
+CREATE OR REPLACE FUNCTION accessgroup.update_accessgroup(
+	_accessgroupcode text,
+	_accessgrouptype accessgroup.accessgrouptype,
+	_hidden boolean,
+	_categorycodes text[])
+    RETURNS SETOF accessgroup.accessgroupwithcategory 
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1
+
+AS $BODY$
+BEGIN
+	UPDATE
+	  	accessgroup.AccessGroup
+    SET
+		AccessGroupType = _accessGroupType, 
+        Hidden = _hidden,
+        Modified = CURRENT_TIMESTAMP
+    WHERE
+		AccessGroupCode = _accessGroupCode;
+		
+	DELETE FROM accessgroup.AccessGroupCategory WHERE accessgroupcode = _accessGroupCode;
+
+	INSERT INTO accessgroup.AccessGroupCategory(
+        AccessGroupCode,
+        CategoryCode
+    )
+	
+	SELECT _accessGroupCode, * FROM UNNEST($4);
+	
+	RETURN QUERY(SELECT accessgroup.AccessGroup.accessgroupcode, accessgrouptype, hidden, created, modified, array_agg(accessgroup.accessgroupcategory.categorycode) categorycodes FROM accessgroup.AccessGroup JOIN accessgroup.accessgroupcategory ON accessgroup.accessgroup.accessgroupcode = accessgroup.accessgroupcategory.accessgroupcode WHERE accessgroup.accessgroup.accessgroupcode = _accessGroupCode GROUP BY accessgroup.accessgroup.accessgroupcode);
+END
 $BODY$;
 
 -- FUNCTION: accessgroup.insert_externalrelationship

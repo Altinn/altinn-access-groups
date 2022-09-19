@@ -23,7 +23,7 @@ namespace Altinn.AccessGroups.Interfaces
         /// </summary>
         /// <param name="accessGroup">AccessGroup model for the AccessGroup to be updated.</param>
         /// <returns>An ActionResult to determine the result.</returns>
-        Task<bool> UpdateGroup(AccessGroup accessGroup);
+        Task<AccessGroup> UpdateGroup(AccessGroup accessGroup);
 
         /// <summary>
         /// Method for retrieving accessgroups.

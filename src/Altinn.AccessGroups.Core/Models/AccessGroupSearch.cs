@@ -39,12 +39,12 @@ namespace Altinn.AccessGroups.Core.Models
 
             if(CoveredByUserId.HasValue && CoveredByUserId <= 0)
             {
-                validationResult.Add(new ValidationResult("CoveredByUserId must not have a value or hava a valid value"));
+                validationResult.Add(new ValidationResult("CoveredByUserId must not have a value or have a valid value"));
             }
 
             if (CoveredByPartyId.HasValue && CoveredByPartyId <= 0)
             {
-                validationResult.Add(new ValidationResult("CoveredByPartyId must not have a value or hava a valid value"));
+                validationResult.Add(new ValidationResult("CoveredByPartyId must not have a value or have a valid value"));
             }
 
             return validationResult;

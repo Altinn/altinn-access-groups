@@ -5,6 +5,7 @@
 using Altinn.AccessGroups.Core;
 using Altinn.AccessGroups.Core.Models;
 using Altinn.AccessGroups.Interfaces;
+using System.Threading.Tasks;
 
 namespace Altinn.AccessGroups.Services
 {
@@ -87,9 +88,9 @@ namespace Altinn.AccessGroups.Services
         /// <param name="accessGroup">AccessGroup model representing the accessgroup that are to be updated.</param>
         /// <returns>A bool indicating whether or not the update was successful or not.</returns>
         /// <exception cref="NotImplementedException">Returns an exception indicating that the method is not yet implemented.</exception>
-        public Task<bool> UpdateGroup(AccessGroup accessGroup)
+        public async Task<AccessGroup> UpdateGroup(AccessGroup accessGroup)
         {
-            throw new NotImplementedException();
+            return await this.accessGroupRepository.UpdateAccessGroup(accessGroup);
         }
 
         /// <summary>
