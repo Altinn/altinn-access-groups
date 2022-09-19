@@ -23,7 +23,7 @@ namespace Altinn.AccessGroups.Controllers
         /// <summary>
         /// Test method.
         /// </summary>
-        /// <returns>test string</returns>
+        /// <returns>test string.</returns>
         [HttpGet]
         public string Get()
         {

@@ -17,7 +17,7 @@ namespace AccessGroupTest
         }
 
         /// <summary>
-        /// Test case: Calling the "Hello world" GET endpoint on the DelegationsController
+        /// Test case: Calling the "Hello world" GET endpoint on the AccessGroupController.
         /// Expected: returns 200 OK with content: "Hello world!"
         /// </summary>
         [Fact]

@@ -89,5 +89,16 @@ namespace Altinn.AccessGroups.Controllers
 
             return this.Ok(result);
         }
+
+        /// <summary>
+        /// Hello world method.
+        /// </summary>
+        /// <returns>Hello world.</returns>
+        [HttpGet]
+        [Route("authorization/api/v1/[controller]/")]
+        public string Get()
+        {
+            return "Hello world!";
+        }
     }
 }

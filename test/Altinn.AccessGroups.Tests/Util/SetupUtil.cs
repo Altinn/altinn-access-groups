@@ -4,13 +4,8 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Altinn.AccessGroups.Core;
 using Altinn.AccessGroups.Test.Mocks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using Altinn.AccessGroups.Interfaces;
+using Altinn.AccessGroups.Tests.Mocks;
 
 namespace Altinn.AccessGroups.Test.Util
 {
@@ -25,6 +20,21 @@ namespace Altinn.AccessGroups.Test.Util
                 {
                     services.AddSingleton<IAccessGroupsRepository, AccessGroupRepositoryMock>();
                     services.AddSingleton<IAccessGroup, AccessGroupServiceMock>();
+                });
+            });
+            factory.Server.AllowSynchronousIO = true;
+            return factory.CreateClient();
+        }
+
+        public static HttpClient GetMembershipControllerTestClient(
+    CustomWebApplicationFactory<MembershipController> customFactory)
+        {
+            WebApplicationFactory<MembershipController> factory = customFactory.WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureTestServices(services =>
+                {
+                    services.AddSingleton<IAccessGroupsRepository, AccessGroupRepositoryMock>();
+                    services.AddSingleton<IMemberships, MembershipServiceMock>();
                 });
             });
             factory.Server.AllowSynchronousIO = true;
