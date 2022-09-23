@@ -1,11 +1,7 @@
-﻿// <copyright file="AccessGroupService.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
+﻿using System.Threading.Tasks;
 using Altinn.AccessGroups.Core;
 using Altinn.AccessGroups.Core.Models;
 using Altinn.AccessGroups.Interfaces;
-using System.Threading.Tasks;
 
 namespace Altinn.AccessGroups.Services
 {

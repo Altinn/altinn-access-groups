@@ -1,20 +1,23 @@
 ﻿namespace Altinn.AccessGroups.Core.Models
 {
+    /// <summary>
+    /// Enum definition for types of delegation
+    /// </summary>
     public enum DelegationType
     {
         /// <summary>
         /// Delegated by user
         /// </summary>
-        brukerdelegering = 0,
+        Brukerdelegering = 0,
 
         /// <summary>
         /// Delegated by a client
         /// </summary>
-        klientdelegering = 1,
+        Klientdelegering = 1,
 
         /// <summary>
         /// Delegated by a service
         /// </summary>
-        tjenestedelegering = 2
+        Tjenestedelegering = 2
     }
 }

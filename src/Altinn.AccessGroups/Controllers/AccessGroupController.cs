@@ -1,8 +1,4 @@
-﻿// <copyright file="AccessGroupController.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
-using Altinn.AccessGroups.Core.Models;
+﻿using Altinn.AccessGroups.Core.Models;
 using Altinn.AccessGroups.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

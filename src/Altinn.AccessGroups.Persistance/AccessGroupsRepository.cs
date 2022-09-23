@@ -1,14 +1,10 @@
-﻿// <copyright file="AccessGroupsRepository.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
+﻿using System.Data;
 using Altinn.AccessGroups.Core;
 using Altinn.AccessGroups.Core.Models;
 using Altinn.AccessGroups.Persistance.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Npgsql;
-using System.Data;
 
 namespace Altinn.AccessGroups.Persistance
 {

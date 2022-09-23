@@ -1,7 +1,3 @@
-// <copyright file="Program.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Altinn.AccessGroups;
@@ -46,7 +42,6 @@ async Task SetConfigurationProviders(ConfigurationManager config)
     string basePath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
 
     // logger.LogInformation($"Program // Loading Configuration from basePath={basePath}");
-
     config.SetBasePath(basePath);
     string configJsonFile1 = $"{basePath}/altinn-appsettings/altinn-dbsettings-secret.json";
     string configJsonFile2 = $"{Directory.GetCurrentDirectory()}/appsettings.json";
@@ -56,16 +51,16 @@ async Task SetConfigurationProviders(ConfigurationManager config)
         configJsonFile2 = "/app/appsettings.json";
     }
 
-    //logger.LogInformation($"Loading configuration file: '{configJsonFile1}'");
+    // logger.LogInformation($"Loading configuration file: '{configJsonFile1}'");
     config.AddJsonFile(configJsonFile1, optional: true, reloadOnChange: true);
 
-    //logger.LogInformation($"Loading configuration file2: '{configJsonFile2}'");
+    // logger.LogInformation($"Loading configuration file2: '{configJsonFile2}'");
     config.AddJsonFile(configJsonFile2, optional: false, reloadOnChange: true);
 
     config.AddEnvironmentVariables();
     config.AddCommandLine(args);
 
-    //await ConnectToKeyVaultAndSetApplicationInsights(config);
+    // await ConnectToKeyVaultAndSetApplicationInsights(config);
 }
 
 void ConfigureServices(IServiceCollection services, IConfiguration config)

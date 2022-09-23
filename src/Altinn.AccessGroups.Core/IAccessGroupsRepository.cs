@@ -1,8 +1,4 @@
-﻿// <copyright file="IAccessGroupsRepository.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
-using Altinn.AccessGroups.Core.Models;
+﻿using Altinn.AccessGroups.Core.Models;
 
 namespace Altinn.AccessGroups.Core
 {

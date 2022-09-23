@@ -1,8 +1,4 @@
-﻿// <copyright file="MembershipService.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
-using Altinn.AccessGroups.Core;
+﻿using Altinn.AccessGroups.Core;
 using Altinn.AccessGroups.Core.Models;
 using Altinn.AccessGroups.Interfaces;
 using Authorization.Platform.Authorization.Models;

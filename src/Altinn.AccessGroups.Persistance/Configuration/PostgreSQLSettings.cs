@@ -1,8 +1,4 @@
-﻿// <copyright file="PostgreSQLSettings.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
-namespace Altinn.AccessGroups.Persistance
+﻿namespace Altinn.AccessGroups.Persistance
 {
     /// <summary>
     /// Represents settings needed to communicate with the PostgreSQL database server.

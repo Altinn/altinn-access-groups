@@ -15,7 +15,7 @@
         /// </summary>
         Organization = 1,
 
-        // <summary>
+        /// <summary>
         /// For categories belonging to the category-tree for private individuals
         /// </summary>
         Person = 2

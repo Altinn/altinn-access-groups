@@ -1,6 +1,6 @@
-﻿using Authorization.Platform.Authorization.Models;
+﻿using System.Text.Json;
 using Altinn.AccessGroups.Core;
-using System.Text.Json;
+using Authorization.Platform.Authorization.Models;
 
 namespace Altinn.AccessGroups.Integrations
 {
@@ -12,7 +12,7 @@ namespace Altinn.AccessGroups.Integrations
         private readonly SBLBridgeClient _bridgeClient;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RolesWrapper"/> class
+        /// Initializes a new instance of the <see cref="AltinnRolesClient"/> class
         /// </summary>
         /// <param name="bridgeClient">the client handler for roles api</param>
         public AltinnRolesClient(SBLBridgeClient bridgeClient)

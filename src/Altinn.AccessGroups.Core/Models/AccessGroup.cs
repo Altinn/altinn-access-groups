@@ -1,8 +1,4 @@
-﻿// <copyright file="AccessGroup.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Altinn.AccessGroups.Core.Models
 {

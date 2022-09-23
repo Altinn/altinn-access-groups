@@ -3,7 +3,7 @@
 namespace Altinn.AccessGroups.Core.Models
 {
     /// <summary>
-    /// 
+    /// Model for performing a search for access groups available between parties
     /// </summary>
     public class AccessGroupSearch : IValidatableObject
     {
@@ -22,7 +22,7 @@ namespace Altinn.AccessGroups.Core.Models
         /// </summary>
         public int OfferedByPartyId { get; set; }
 
-        
+        /// <inheritdoc/>
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             List<ValidationResult> validationResult = new List<ValidationResult>();
@@ -32,12 +32,12 @@ namespace Altinn.AccessGroups.Core.Models
                 validationResult.Add(new ValidationResult("Offered by must be included"));
             }
 
-            if(CoveredByUserId == null && CoveredByPartyId == null)
+            if (CoveredByUserId == null && CoveredByPartyId == null)
             {
                 validationResult.Add(new ValidationResult("One CoveredBy value must be included"));
             }
 
-            if(CoveredByUserId.HasValue && CoveredByUserId <= 0)
+            if (CoveredByUserId.HasValue && CoveredByUserId <= 0)
             {
                 validationResult.Add(new ValidationResult("CoveredByUserId must not have a value or have a valid value"));
             }

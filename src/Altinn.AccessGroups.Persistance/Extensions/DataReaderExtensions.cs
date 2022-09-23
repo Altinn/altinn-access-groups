@@ -1,8 +1,4 @@
-﻿// <copyright file="DataReaderExtensions.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
-using System;
+﻿using System;
 using System.Data;
 
 namespace Altinn.AccessGroups.Persistance.Extensions
